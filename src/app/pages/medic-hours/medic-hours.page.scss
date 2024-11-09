@@ -1,0 +1,14 @@
+.content-flex {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+ion-datetime-button button {
+    --background:white;
+}
+ion-card-content {
+    min-width : 20rem;
+}
+// ion-select {
+//     max-width:100%;
+// }

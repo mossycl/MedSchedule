@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-btn-back page="/tab-medico/main-page-medic"></app-btn-back>
+    </ion-buttons>
+    <ion-title>Lista de Pacientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-datetime
+        [(ngModel)]="selectedDate"
+        presentation="date"
+        locale="es-ES"
+        [value]="defDate"
+        (ionChange)="showPatientList(selectedDate)"></ion-datetime>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card">
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="selectedEstado" (ionChange)="filterList(selectedDate, selectedEstado)" [value]="selectedEstado">
+        <ion-radio value="1" labelPlacement="end">Activo</ion-radio><br />
+        <ion-radio value="3" labelPlacement="end">Finalizado</ion-radio><br />
+        <ion-radio value="2" labelPlacement="end">Cancelado</ion-radio><br />
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+  <ion-list *ngIf="hideList != true" lines="full">
+    <ion-item *ngIf="filteredList.length == 0">
+      <ion-label>No tiene pacientes</ion-label>
+    </ion-item>
+    <ng-container *ngIf="filteredList.length !=0">
+      <ion-item (click)="goToPatient(patient)" button detail="true" detail-icon="caret-forward-outline" class="item-list" *ngFor="let patient of filteredList">
+        <ion-label>{{patient.dia}}/{{patient.mes}}/{{patient.anno}}</ion-label>
+        <ion-label>{{patient.hora}}</ion-label>
+        <ion-label>{{patient.nombrePaciente}}</ion-label>
+        <ion-label slot="end">{{stateVal(patient.estado)}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

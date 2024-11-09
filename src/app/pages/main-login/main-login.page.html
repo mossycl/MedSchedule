@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-title>mainLogin</ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <img class="img-center" src="assets/img/medsch-logo.png" alt="">
+  <ion-card class="card">
+    <ion-card-content>
+      <form [formGroup]="loginForm">
+        <ion-item class="input">
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <ion-input [(ngModel)]="mail" [disabled]="!isDbReady" type="email" formControlName="email" label="E-mail" labelPlacement="floating" placeholder="alguien@correo.com"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.email">Email no es válido</ion-label>
+        <ion-label color="danger" *ngIf="loginForm.get('email').touched && loginForm.get('email').errors?.required">Introduzca su email</ion-label>
+        <ion-item class="input">
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-input [(ngModel)]="pw" [disabled]="!isDbReady" label="Contraseña" [type]="typePw" formControlName="password" labelPlacement="floating" placeholder="Inserte su contraseña"></ion-input>
+          <ion-button (click)="showPw()" fill="clear" slot="end">
+            <ion-icon size="large" name="eye-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-label color="danger" *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.required">Introduzca su contraseña</ion-label>
+        <ion-label color="danger" *ngIf="loginForm.get('password').touched && loginForm.get('password').errors?.['minlength']">Contraseña inválida</ion-label>
+
+        <ion-button class="btn" (click)="login(mail, pw)" [disabled]="!loginForm.valid">Iniciar Sesión</ion-button>
+        <ion-button class="btn" (click)="signup()">Registrarse</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="forgotPassword()" class="btn">Olvidé mi contraseña</ion-button>
+</ion-content>
