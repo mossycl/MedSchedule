@@ -73,7 +73,7 @@
       <form action="">
         <ion-item class="input">
           <ion-icon slot="start" name="mail-outline"></ion-icon>
-          <ion-input [(ngModel)]="emailInput" type="email" label="Inserte Nuevo E-mail" labelPlacement="floating" placeholder="alguien@correo.com"></ion-input>      
+          <ion-input [(ngModel)]="emailInput" name="newMail" type="email" label="Inserte Nuevo E-mail" labelPlacement="floating" placeholder="alguien@correo.com"></ion-input>      
         </ion-item>
         <ion-button [disabled]="emailInput==''" (click)="confirmChangeEmail()" class="btn" type="submit">Cambiar E-mail</ion-button>
       </form>
